@@ -5,8 +5,21 @@ def factorial(n):
     result = 1
     while n > 1:
         result *= n
-        n -= 1  # Decrementamos n para que el ciclo termine
+        n -= 1  # Decrementar n para evitar bucle infinito meesmo
     return result
 
-f = factorial(int(sys.argv[1]))
-print(f)
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: {} <number>".format(sys.argv[0]))
+        sys.exit(1)
+
+    try:
+        num = int(sys.argv[1])
+        if num < 0:
+            raise ValueError("Number must be non-negative")
+    except ValueError as e:
+        print("Error:", e)
+        sys.exit(1)
+
+    f = factorial(num)
+    print(f)
